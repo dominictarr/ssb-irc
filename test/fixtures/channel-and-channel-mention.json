@@ -1,0 +1,19 @@
+{
+  "previous": "%h+QfUtfWPuohiom7pyr6GxggpAq0H0aaaSd1HuBihWY=.sha256",
+  "author": "@EMovhfIrFk4NihAKnRNhrfRaqIhBv1Wj8pTxJNgvCCY=.ed25519",
+  "sequence": 9176,
+  "timestamp": 1500455947195,
+  "hash": "sha256",
+  "content": {
+    "type": "post",
+    "text": "I think we need a thing to be able to \"follow\" a git-ssb repo, or a git-ssb user, and then automatically replicate whatever they push. The same would be really useful for [p2p music](%VStrS5HvTPcYfcx9zdGbiN9Q3/NUGgWBMtDDLm1X+/o=.sha256) as well as maybe [#dat](#dat) [#ipfs](#ipfs) [#beaker](#beaker)!",
+    "channel": "scuttlebutt",
+    "mentions": [
+      {
+        "link": "%VStrS5HvTPcYfcx9zdGbiN9Q3/NUGgWBMtDDLm1X+/o=.sha256",
+        "name": "p2p music"
+      }
+    ]
+  },
+  "signature": "L9q4NH3jxt1B28BRXf9pmpmVyzqFIfUqwwU6YnnPLgsIRozMQrPmNRtQS3oEJ3mjmRSRsutimJTuyp8UY8y3Dg==.sig.ed25519"
+}

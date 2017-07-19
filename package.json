@@ -1,0 +1,26 @@
+{
+  "name": "ssb-irc",
+  "description": "",
+  "version": "0.0.0",
+  "homepage": "https://github.com/dominictarr/ssb-irc",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/dominictarr/ssb-irc.git"
+  },
+  "dependencies": {
+    "node-irc": "0.0.4",
+    "pull-stream": "^3.6.0",
+    "ssb-keys": "^7.0.10",
+    "ssb-markdown": "^3.3.0",
+    "ssb-ref": "^2.7.1"
+  },
+  "devDependencies": {
+    "ssb-client": "^4.5.0",
+    "tape": "^4.6.3"
+  },
+  "scripts": {
+    "test": "set -e; for t in test/*.js; do node $t; done"
+  },
+  "author": "'Dominic Tarr' <dominic.tarr@gmail.com> (dominictarr.com)",
+  "license": "MIT"
+}

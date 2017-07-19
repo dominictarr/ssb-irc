@@ -1,0 +1,22 @@
+{
+  "previous": "%+fb8OPO2hIZKWvRaWmuO+faml0GtOTU+yuj5PRrZ5EY=.sha256",
+  "author": "@9nTgtYmvW4HID6ayt6Icwc8WZxdifx5SlSKKIX/X/1g=.ed25519",
+  "sequence": 947,
+  "timestamp": 1500275596802,
+  "hash": "sha256",
+  "content": {
+    "type": "post",
+    "root": "%ZdkD1w8shhXgQwcpu9dIdlsiJ9LOO7SZI+J5TezkE1E=.sha256",
+    "branch": "%6R43LlYa4z5tUslesQWu1i4bG0eMzDYTQnAUfU/iHO8=.sha256",
+    "channel": "cooperative",
+    "text": "[@dominic](@EMovhfIrFk4NihAKnRNhrfRaqIhBv1Wj8pTxJNgvCCY=.ed25519) the conditions for acceptable employment will vary based on legal jurisdiction, so I think it makes sense to have some nation-specific customization at that level, but otherwise the guild would operate internationally. The guild wouldn't have to be an incorporated entity right away, it could be a voluntary association of coops and freelancers that can make some collective demands about how they want to be treated in matters of employment.",
+    "mentions": [
+      {
+        "link": "@EMovhfIrFk4NihAKnRNhrfRaqIhBv1Wj8pTxJNgvCCY=.ed25519",
+        "rel": "mentions",
+        "name": "dominic"
+      }
+    ]
+  },
+  "signature": "BIzIZL98shIBvsVOxbnsU7s4U9crKGyV9b/FiK7fNvmalflJN+QVi55DMsSHOQtspMRhLzMJCGHQwyH564XYAw==.sig.ed25519"
+}
