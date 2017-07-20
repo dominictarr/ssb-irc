@@ -58,6 +58,20 @@ There are a bunch of matchers which return an array of objects like this:
 if the type is `channel` it gets posted in a irc channel publically,
 if it's a user, it's posted as a direct message to them.
 
+## config
+
+`ssb-irc` supports the following configuration options
+
+```
+"irc": {
+  //domain where your ssb-viewer is hosted.
+  "viewer": <http://yourhost.com> || http://viewer.scuttlebot.io,
+  "host": <irc_host> || "irc.freenode.net",
+  "port:" <irc_port> || 6667,
+  "name": <name_of_ircbot> || "ssbbot"
+}
+```
+
 ## more ideas
 
 also give out ssb invites to people on irc (and set up notifications for them too, obviously)
@@ -65,7 +79,4 @@ also give out ssb invites to people on irc (and set up notifications for them to
 ## License
 
 MIT
-
-
-
 
