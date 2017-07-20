@@ -47,31 +47,31 @@ IRC.private = function (irc, nick, message) {
 }
 
 
-//if(!module.parent) {
-//  var ssb = require('./ssb')
-//  var irc = IRC({}, function (err) {
-//    var note = {
-//      author: 'dominic',
-//      target: 'domanic',
-//      text: 'test 1 2 3, @domanic',
-//      id: '%v6y1c1VYXthYbNYh0RqmXfC18HyhHnozDN3ZhrWLThU=.sha256'
-//    }
-//    var config = {}
-//
-//    function notify (note) {
-//      irc.say(
-//        note.type == 'channel'
-//      ? IRC.toChannel(note.target)
-//      : note.target
-//      ,
-//      ssb.render(note, ssb.link(note.id, config))
-//      )
-//    }
-//
-//    notify(note)
-//  })
-//}
-//
+if(!module.parent) {
+  var ssb = require('./ssb')
+  var irc = IRC({}, function (err) {
+    var note = {
+      author: 'dominic',
+      target: 'domanic',
+      text: 'test 1 2 3, @domanic',
+      id: '%v6y1c1VYXthYbNYh0RqmXfC18HyhHnozDN3ZhrWLThU=.sha256'
+    }
+    var config = {}
+
+    function notify (note) {
+      irc.say(
+        note.type == 'channel'
+      ? IRC.toChannel(note.target)
+      : note.target
+      ,
+      ssb.render(note, ssb.link(note.id, config))
+      )
+    }
+
+    notify(note)
+  })
+}
+
 
 
 

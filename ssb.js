@@ -176,28 +176,27 @@ exports.link = function (id, config) {
   return ((config && config.irc && config.irc.domain) || "http://viewer.scuttlebot.io") + '/' + encodeURIComponent(id)
 }
 
-//if(!module.parent) {
-//  //this is just for testing...
-//  require('ssb-client')(function (err, sbot) {
-//    if(err) throw err
-//    var state = init(sbot, process.argv[2] || sbot.id, function (err, state) {
-//
-//      console.log(state)
-//      //XXX: properly persist state with a flumeview?
-//
-//      pull(
-//        sbot.createLogStream({}),
-//        pull.drain(function (msg) {
-//          if(msg.sync) return
-//          var a = tests.reduce(function (found, test) {
-//            return found.concat(exports.match(state, msg) || [])
-//          }, [])
-//          if(a.length) {
-//
-//          }
-//        })
-//      )
-//    })
-//  })
-//}
-//
+if(!module.parent) {
+  //this is just for testing...
+  require('ssb-client')(function (err, sbot) {
+    if(err) throw err
+    var state = init(sbot, process.argv[2] || sbot.id, function (err, state) {
+
+      //XXX: properly persist state with a flumeview?
+      console.log(state)
+      pull(
+        sbot.createLogStream({live: true, old: false}),
+        pull.drain(function (msg) {
+          if(msg.sync) return
+          var a = exports.match(state, msg)
+          if(a.length) {
+            console.log(a)
+          }
+        })
+      )
+    })
+  })
+}
+
+
+
