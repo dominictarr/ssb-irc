@@ -1,5 +1,6 @@
 var ssb = require('./ssb')
 var IRC = require('./irc')
+var pull = require('pull-stream')
 //this should just wrap the stuff in util.js
 
 exports.name = 'irc'
@@ -10,10 +11,10 @@ exports.init = function (sbot, config) {
   //
   var n = 2
   //load current state
-  var state = ssb.init(sbot, process.argv[2] || sbot.id, next)
+  var state = ssb.init(sbot, sbot.id, next)
   var irc = IRC(config, next)
 
-
+  console.log("STATE", state)
   function notify (note) {
     irc.say(
       note.type == 'channel'
@@ -24,13 +25,14 @@ exports.init = function (sbot, config) {
     )
   }
 
-  function next (err, state) {
+  function next () {
     if(--n) return
     //XXX: properly persist state with a flumeview?
 
     //make sure we have joined every channel
     for(var k in state.channels) {
-      var channel = state.channels[k]
+      var channel = state.channels[k] === true ? k : state.channels[k]
+      console.log("JOIN", channel)
       IRC.join(irc, channel)
     }
 
@@ -42,15 +44,13 @@ exports.init = function (sbot, config) {
       sbot.createLogStream({live: true}),
       pull.drain(function (msg) {
         if(msg.sync) return
-        var a = tests.reduce(function (found, test) {
-          return found.concat(exports.match(state, msg) || [])
-        }, [])
-
+        var a = ssb.match(state, msg)
         if(a.length)
           a.forEach(notify)
       })
     )
   }
 }
+
 
 

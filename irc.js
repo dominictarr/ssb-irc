@@ -6,8 +6,21 @@ var IRC = module.exports = function (config, cb) {
     conf.port || 6667,
     conf.name || 'ssbbot'
   )
-  irc.connect()
+  ;(function connect() {
+    irc.connect()
+    irc.client.on('error', reconnect)
+    irc.client.on('close', reconnect)
+    var retry = false
+    function reconnect () {
+      if(retry) return
+      retry = true
+      setTimeout(connect, 10e3)
+    }
+  })
   irc.on('ready', cb)
+  irc.on('error', function () {
+
+  })
   return irc
 }
 
@@ -34,28 +47,31 @@ IRC.private = function (irc, nick, message) {
 }
 
 
-if(!module.parent) {
-  var ssb = require('./ssb')
-  var irc = IRC({}, function (err) {
-    var note = {
-      author: 'dominic',
-      target: 'domanic',
-      text: 'test 1 2 3, @domanic',
-      id: '%v6y1c1VYXthYbNYh0RqmXfC18HyhHnozDN3ZhrWLThU=.sha256'
-    }
-    var config = {}
+//if(!module.parent) {
+//  var ssb = require('./ssb')
+//  var irc = IRC({}, function (err) {
+//    var note = {
+//      author: 'dominic',
+//      target: 'domanic',
+//      text: 'test 1 2 3, @domanic',
+//      id: '%v6y1c1VYXthYbNYh0RqmXfC18HyhHnozDN3ZhrWLThU=.sha256'
+//    }
+//    var config = {}
+//
+//    function notify (note) {
+//      irc.say(
+//        note.type == 'channel'
+//      ? IRC.toChannel(note.target)
+//      : note.target
+//      ,
+//      ssb.render(note, ssb.link(note.id, config))
+//      )
+//    }
+//
+//    notify(note)
+//  })
+//}
+//
 
-    function notify (note) {
-      irc.say(
-        note.type == 'channel'
-      ? IRC.toChannel(note.target)
-      : note.target
-      ,
-      ssb.render(note, ssb.link(note.id, config))
-      )
-    }
 
-    notify(note)
-  })
-}
 
