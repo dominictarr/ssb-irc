@@ -1,7 +1,7 @@
 {
   "name": "ssb-irc",
   "description": "",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "homepage": "https://github.com/dominictarr/ssb-irc",
   "repository": {
     "type": "git",
@@ -24,4 +24,3 @@
   "author": "'Dominic Tarr' <dominic.tarr@gmail.com> (dominictarr.com)",
   "license": "MIT"
 }
-
