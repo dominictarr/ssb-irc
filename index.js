@@ -14,7 +14,6 @@ exports.init = function (sbot, config) {
   var state = ssb.init(sbot, sbot.id, next)
   var irc = IRC(config, next)
 
-  console.log("STATE", state)
   function notify (note) {
     irc.say(
       note.type == 'channel'
@@ -28,6 +27,7 @@ exports.init = function (sbot, config) {
   function next () {
     if(--n) return
     //XXX: properly persist state with a flumeview?
+    console.log("STATE", state)
 
     //make sure we have joined every channel
     for(var k in state.channels) {
@@ -51,6 +51,7 @@ exports.init = function (sbot, config) {
     )
   }
 }
+
 
 
 
