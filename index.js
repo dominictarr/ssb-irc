@@ -1,3 +1,4 @@
+'use strict'
 var ssb = require('./ssb')
 var IRC = require('./irc')
 var pull = require('pull-stream')
@@ -24,24 +25,22 @@ exports.init = function (sbot, config) {
     )
   }
 
-  function next () {
+  function next (err, arg) {
     if(--n) return
     //XXX: properly persist state with a flumeview?
-    console.log("STATE", state)
 
     //make sure we have joined every channel
     for(var k in state.channels) {
       var channel = state.channels[k] === true ? k : state.channels[k]
-      console.log("JOIN", channel)
       IRC.join(irc, channel)
     }
 
     //only notify about live posts.
     //this may cut out if the connection to IRC drops
-    //though, since 
+    //it should reconnect, but messages while disconnecting will be dropped.
 
     pull(
-      sbot.createLogStream({live: true}),
+      sbot.createLogStream({live: true, old: false}),
       pull.drain(function (msg) {
         if(msg.sync) return
         var a = ssb.match(state, msg)
@@ -51,6 +50,17 @@ exports.init = function (sbot, config) {
     )
   }
 }
+
+
+
+if(!module.parent) {
+  require('ssb-client')(function (err, sbot) {
+    exports.init(sbot, require('ssb-config'))
+  })
+
+}
+
+
 
 
 

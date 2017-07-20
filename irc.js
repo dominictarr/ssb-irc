@@ -1,6 +1,13 @@
 var IRC = module.exports = function (config, cb) {
+  
   var IRC = require('node-irc')
   var conf = config.irc || {}
+  console.log(
+    "CONNECT",
+    conf.host || 'irc.freenode.net',
+    conf.port || 6667,
+    conf.name || 'ssbbot_'
+  )
   var irc = new IRC(
     conf.host || 'irc.freenode.net',
     conf.port || 6667,
@@ -11,12 +18,13 @@ var IRC = module.exports = function (config, cb) {
     irc.client.on('error', reconnect)
     irc.client.on('close', reconnect)
     var retry = false
-    function reconnect () {
+    function reconnect (err) {
+      console.log('reconnect...', err)
       if(retry) return
       retry = true
       setTimeout(connect, 10e3)
     }
-  })
+  })()
   irc.on('ready', cb)
   irc.on('error', function () {
 
