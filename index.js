@@ -9,6 +9,17 @@ exports.init = function (sbot, config) {
   var state = ssb.init(sbot, process.argv[2] || sbot.id, next)
   var irc = IRC(config, next)
 
+
+  function notify (note) {
+    irc.say(
+      note.type == 'channel'
+    ? IRC.toChannel(note.target)
+    : note.target
+    ,
+    ssb.render(note, ssb.link(note.id, config))
+    )
+  }
+
   function next (err, state) {
     if(--n) return
     //XXX: properly persist state with a flumeview?
@@ -23,16 +34,6 @@ exports.init = function (sbot, config) {
     //this may cut out if the connection to IRC drops
     //though, since 
 
-  function notify (note) {
-    irc.say(
-      note.type == 'channel'
-    ? IRC.toChannel(note.target)
-    : note.target
-    ,
-    ssb.render(note, ssb.link(note.id, config))
-    )
-  }
-
     pull(
       sbot.createLogStream({live: true}),
       pull.drain(function (msg) {
@@ -45,7 +46,7 @@ exports.init = function (sbot, config) {
           a.forEach(notify)
       })
     )
-  })
+  }
 }
 
 
