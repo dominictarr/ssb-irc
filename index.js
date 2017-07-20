@@ -2,6 +2,10 @@ var ssb = require('./ssb')
 var IRC = require('./irc')
 //this should just wrap the stuff in util.js
 
+exports.name = 'irc'
+exports.version = '1.0.0'
+exports.manifest = {}
+
 exports.init = function (sbot, config) {
   //
   var n = 2
